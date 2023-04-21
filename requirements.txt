@@ -5,3 +5,4 @@ torchvision
 streamlit
 kornia
 Pillow
+mesa-utils==8.4.0
