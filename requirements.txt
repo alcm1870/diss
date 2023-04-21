@@ -1,8 +1,7 @@
 numpy
-opencv-python
+opencv-python-headless
 torch
 torchvision
 streamlit
 kornia
 Pillow
-mesa-utils
