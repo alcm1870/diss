@@ -3,4 +3,4 @@ opencv-python
 torch
 streamlit
 kornia
-PIL
+Pillow
