@@ -1,6 +1,7 @@
 numpy
 opencv-python
 torch
+torchvision
 streamlit
 kornia
 Pillow
