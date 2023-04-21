@@ -1,5 +1,5 @@
 numpy
-opencv-python==4.5.1
+opencv-python
 torch
 torchvision
 streamlit
