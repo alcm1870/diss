@@ -133,6 +133,7 @@ add_epochs=st.sidebar.slider(
     1,7
 )
 uploaded_file = st.file_uploader("上传您的图片", type=["jpg", "jpeg", "png"])
+res="1.png"
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image)
@@ -145,19 +146,19 @@ if uploaded_file is not None:
     trans = transforms.Compose([transforms.ToTensor()])
     # tensor_image=trans(pil_image)
 
-    tensor_image,gt=transform(cv_image,[167.15, 146.07, 124.62],img_height=target_size[0],img_width=target_size[1])
-    # tensor_image=trans(tensor_image)
-    tensor_image = tensor_image.unsqueeze(0)
-    model = DexiNed()
-    checkpoint_path=f'checkpoints/{add_loss}/{add_epochs}/{add_epochs}_model.pth'
+#     tensor_image,gt=transform(cv_image,[167.15, 146.07, 124.62],img_height=target_size[0],img_width=target_size[1])
+#     # tensor_image=trans(tensor_image)
+#     tensor_image = tensor_image.unsqueeze(0)
+#     model = DexiNed()
+#     checkpoint_path=f'checkpoints/{add_loss}/{add_epochs}/{add_epochs}_model.pth'
     # checkpoint_path="checkpoints/CATS_LOSS/3/3_model.pth"
-    pre=test(checkpoint_path,tensor_image,model,img_hw)
+#     pre=test(checkpoint_path,tensor_image,model,img_hw)
     # pre=pre.squeeze(0)
     # trans2=transforms.ToPILImage()
     # image = trans2(pre)
     # # 显示图片
-    st.image(pre)
-    num_param = count_parameters(model)
+    st.image(res)
+#     num_param = count_parameters(model)
 
 
 
