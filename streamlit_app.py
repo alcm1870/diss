@@ -135,18 +135,16 @@ def checkpoint_down():
     # <yourObjectName>由包含文件后缀，不包含Bucket名称组成的Object完整路径，例如abc/efg/123.jpg。
     # <yourLocalFile>由本地文件路径加文件名包括后缀组成，例如/users/local/myfile.txt。
     # bucket.put_object_from_file('', '')
-    for i in range(6):
-        i = i + 1
-        os.makedirs(f"CATS_LOSS/{i}", exist_ok=True)
-        obj_path = f"CATS_LOSS/{i}/{i}_model.pth"
-        loc_path = f"CATS_LOSS/{i}/{i}_model.pth"
-        bucket.get_object_to_file(obj_path, loc_path)
-    for i in range(6):
-        i = i + 1
-        os.makedirs(f"BSCN_LOSS2/{i}", exist_ok=True)
-        obj_path = f"BSCN_LOSS2/{i}/{i}_model.pth"
-        loc_path = f"BSCN_LOSS2/{i}/{i}_model.pth"
-        bucket.get_object_to_file(obj_path, loc_path)
+    i=3
+    os.makedirs(f"CATS_LOSS/{i}", exist_ok=True)
+    obj_path = f"CATS_LOSS/{i}/{i}_model.pth"
+    loc_path = f"CATS_LOSS/{i}/{i}_model.pth"
+    bucket.get_object_to_file(obj_path, loc_path)
+    os.makedirs(f"BSCN_LOSS2/{i}", exist_ok=True)
+    obj_path = f"BSCN_LOSS2/{i}/{i}_model.pth"
+    loc_path = f"BSCN_LOSS2/{i}/{i}_model.pth"
+    bucket.get_object_to_file(obj_path, loc_path)
+    
 def main():
 
     checkpoint_down()
@@ -155,10 +153,10 @@ def main():
         "请选择损失",
         ("CATS_LOSS","BSCN_LOSS2")
     )
-    add_epochs=st.sidebar.slider(
-        "请选择清晰程度（越清晰线条细节越少）",
-        1,6
-    )
+#     add_epochs=st.sidebar.slider(
+#         "请选择清晰程度（越清晰线条细节越少）",
+#         1,2
+#     )
     uploaded_file = st.file_uploader("上传您的图片", type=["jpg", "jpeg", "png"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
@@ -176,8 +174,8 @@ def main():
         # tensor_image=trans(tensor_image)
         tensor_image = tensor_image.unsqueeze(0)
         model = DexiNed()
-        checkpoint_path=f'{add_loss}/{add_epochs}/{add_epochs}_model.pth'
-        # checkpoint_path="checkpoints/CATS_LOSS/3/3_model.pth"
+#         checkpoint_path=f'{add_loss}/{add_epochs}/{add_epochs}_model.pth'
+        checkpoint_path=f"{add_loss}/3/3_model.pth"
         pre=test(checkpoint_path,tensor_image,model,img_hw)
         # pre=pre.squeeze(0)
         # trans2=transforms.ToPILImage()
