@@ -5,3 +5,4 @@ torchvision
 streamlit
 kornia
 Pillow
+oss2
