@@ -5,4 +5,4 @@ torchvision
 streamlit
 kornia
 Pillow
-oss2
+esdk-obs-python
