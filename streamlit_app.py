@@ -106,16 +106,16 @@ def output(img,img_hw):
     idx += 1
     return fuse
 
-@st.cache
-def load_model(model,checkpoint_path):
-    return model.load_state_dict(torch.load(checkpoint_path,map_location=torch.device('cpu')))
+@st.cache_resource
+def load_model(checkpoint_path):
+    return torch.load(checkpoint_path,map_location=torch.device('cpu'))
 
 def test(checkpoint_path,img, model,img_hw):
     if not os.path.isfile(checkpoint_path):
         raise FileNotFoundError(
             f"Checkpoint filte note found: {checkpoint_path}")
     # print(f"Restoring weights from: {checkpoint_path}")
-    model=load_model(model,checkpoint_path)
+    model.load_state_dict(load_model(checkpoint_path))
     model.eval()
 
     with torch.no_grad():
@@ -124,7 +124,7 @@ def test(checkpoint_path,img, model,img_hw):
 
     return preds
 
-@st.cache
+@st.cache_resource
 def checkpoint_down():
     from obs import ObsClient
 
